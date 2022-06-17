@@ -35,6 +35,11 @@ tasks:
         if [ -z "$CLUSTER_ALREADY_EXISTS" ]; then
           # cluster doesn't exist yet, so create it and install all CRDs
           k3d cluster create --config=k3d/config.yaml
+          kubectl create ns istio-system
+          kubectl label --overwrite ns/default istio-injection=enabled
+          # kubectl create ns cloud-main-system
+          # kubectl create ns employee-ns && kubectl label --overwrite ns/employee-ns istio-injection=enabled
+          # kubectl create ns non-employee-ns && kubectl label --overwrite ns/employee-ns istio-injection=enabled
         else
           echo Cluster {{.CLUSTER_NAME}} already exists.
         fi
@@ -69,9 +74,11 @@ tasks:
     cmds:
       - ISTIO_ALREADY_INSTALLED=$(command -v istioctl) && if [[ $ISTIO_ALREADY_INSTALLED ]]; then echo istioctl is already installed; else curl -L https://istio.io/downloadIstio | ISTIO_VERSION={{.ISTIO_VERSION}} TARGET_ARCH=x86_64 sh - && mv istio-{{.ISTIO_VERSION}}/bin/istioctl $HOME/bin && rm -r istio-{{.ISTIO_VERSION}}; fi
 
-  istio:operator:
+  istio:operator-controller:
     prefix: istio-operator chart
-    desc: Deploy Istio Operator via helm chart
+    desc: Deploy Istio Operator Controller via helm chart.
+    deps:
+      - k3d:cluster:create
     cmds:
     - |
       helm install istio-operator chart/ \
@@ -80,3 +87,10 @@ tasks:
       --set operatorNamespace=istio-operator \
       --set watchedNamespaces=istio-system
 
+  istio:operator:
+    prefix: istio operator
+    desc: Installs Istio gateway onto the cluster using the Istio Operator.
+    deps:
+      - k3d:cluster:create
+    cmds:
+      - kubectl apply -f istio-operator.yaml

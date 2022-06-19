@@ -5,7 +5,7 @@
 3. `task istio:operator`
 4. `kubectl apply -f netshoot.yaml`
 5. `kubectl apply -f virtual-service.yaml`
-6. Run `curl -sL -o /dev/null -D - http://edition.cnn.com/politics` and verify 301 redirect
+6. Run `curl -sL -o /dev/null -D - https://edition.cnn.com/politics`
 
 
 - Helm chart borrowed from https://github.com/istio/istio/tree/1.7.8/manifests/charts/istio-operator
@@ -31,3 +31,5 @@ When cluster changes from 1.21.X to >= 1.22.X, will need to update Istio Operato
 - [Isto Operator Install Guide (v1.7)](https://istio.io/v1.7/docs/setup/install/operator/)
 
 - [Multiple Istio Gateways](https://getistio.io/istio-in-practice/multiple-ingress-gateways/)
+
+- [Envoy access logs](https://istio.io/latest/docs/tasks/observability/logs/access-log/)

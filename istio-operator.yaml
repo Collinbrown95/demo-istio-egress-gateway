@@ -12,6 +12,11 @@ spec:
     egressGateways:
     - name: istio-egressgateway
       enabled: true
+    - name: istio-egressgateway-cloudmain
+      namespace: cloud-main-system
+      enabled: true
+      label:
+        istio: istio-egressgateway-cloudmain
       # namespace: istio-system
       # k8s:
       #   # Horizontal Pod Autoscaling Settings

@@ -10,8 +10,6 @@ spec:
   profile: minimal
   components:
     egressGateways:
-    - name: istio-egressgateway
-      enabled: true
     - name: istio-egressgateway-cloudmain
       namespace: cloud-main-system
       enabled: true

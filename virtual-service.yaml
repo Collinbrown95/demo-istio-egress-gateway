@@ -6,35 +6,34 @@ spec:
   hosts:
   - edition.cnn.com
   ports:
-  - number: 80
-    name: http-port
-    protocol: HTTP
   - number: 443
-    name: https
-    protocol: HTTPS
+    name: tls
+    protocol: TLS
   resolution: DNS
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: Gateway
 metadata:
-  name: istio-egressgateway
+  name: istio-egressgateway-cloudmain
 spec:
   selector:
-    istio: egressgateway
+    istio: istio-egressgateway-cloudmain
   servers:
   - port:
-      number: 80
-      name: http
-      protocol: HTTP
+      number: 443
+      name: tls
+      protocol: TLS
     hosts:
     - edition.cnn.com
+    tls:
+      mode: PASSTHROUGH
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
   name: egressgateway-for-cnn
 spec:
-  host: istio-egressgateway.istio-system.svc.cluster.local
+  host: istio-egressgateway-cloudmain.cloud-main-system.svc.cluster.local
   subsets:
   - name: cnn
 ---
@@ -46,27 +45,30 @@ spec:
   hosts:
   - edition.cnn.com
   gateways:
-  - istio-egressgateway
   - mesh
-  http:
+  - istio-egressgateway-cloudmain
+  tls:
   - match:
     - gateways:
       - mesh
-      port: 80
+      port: 443
+      sniHosts:
+      - edition.cnn.com
     route:
     - destination:
-        host: istio-egressgateway.istio-system.svc.cluster.local
+        host: istio-egressgateway-cloudmain.cloud-main-system.svc.cluster.local
         subset: cnn
         port:
-          number: 80
-      weight: 100
+          number: 443
   - match:
     - gateways:
-      - istio-egressgateway
-      port: 80
+      - istio-egressgateway-cloudmain
+      port: 443
+      sniHosts:
+      - edition.cnn.com
     route:
     - destination:
         host: edition.cnn.com
         port:
-          number: 80
+          number: 443
       weight: 100

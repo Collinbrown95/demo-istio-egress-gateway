@@ -37,9 +37,9 @@ tasks:
           k3d cluster create --config=k3d/config.yaml
           kubectl create ns istio-system
           kubectl label --overwrite ns/default istio-injection=enabled
-          # kubectl create ns cloud-main-system
-          # kubectl create ns employee-ns && kubectl label --overwrite ns/employee-ns istio-injection=enabled
-          # kubectl create ns non-employee-ns && kubectl label --overwrite ns/employee-ns istio-injection=enabled
+          kubectl create ns cloud-main-system
+          kubectl create ns employee-ns && kubectl label --overwrite ns/employee-ns istio-injection=enabled
+          kubectl create ns non-employee-ns && kubectl label --overwrite ns/non-employee-ns istio-injection=enabled
         else
           echo Cluster {{.CLUSTER_NAME}} already exists.
         fi

@@ -34,3 +34,6 @@ spec:
         port:
           number: 443
       weight: 100
+  exportTo:
+    - collin-brown
+    - cloud-main-system

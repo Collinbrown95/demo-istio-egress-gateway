@@ -1,7 +1,7 @@
 apiVersion: networking.istio.io/v1alpha3
 kind: ServiceEntry
 metadata:
-  name: cnn-debug
+  name: cnn
   namespace: cloud-main-system
 spec:
   hosts:
@@ -11,3 +11,6 @@ spec:
     name: tls
     protocol: TLS
   resolution: DNS
+  exportTo:
+    - collin-brown
+    - cloud-main-system

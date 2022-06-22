@@ -6,4 +6,4 @@ metadata:
 spec:
   host: cnn-egress-gateway-debug.cloud-main-system.svc.cluster.local
   subsets:
-  - name: cnn
+  - name: cnn-debug

@@ -33,3 +33,31 @@ Tear down example with `kubectl delete -f manifests-different-namespace/ --recur
 **Result**: the curl request fails with error message `OpenSSL SSL_connect: Connection reset by peer in connection to edition.cnn.com:443`.
 
 Tear down example with `kubectl delete -f manifests-cloud-main/ --recursive`
+
+# Documentation / Architecture Diagrams
+
+The purpose of this section is to document the setup for this standalone example in a working state. A number of changes will be made, so the diagrams below will be updated accordingly (TODO: link issue with proposed changes).
+
+Note that I split these diagrams into two parts to reduce clutter. The first diagram illustrates how the various components are deployed and configured, while the second diagram shows the routing that takes place with the Istio egress gateway and how the various istio components fit together.
+
+## Egress Gateway Deployed Components
+
+The diagram below outlines the various Kubernetes components that are involved with deploying the Egress gateway.
+
+![egress gateway deployed components](diagrams/egress_gateway_deployed_components.png)
+
+## Egress Gateway Behaviour
+
+The diagram below shows the routing logic that takes place with the egress gateway.
+
+![egress gateway behaviour](diagrams/egress_gateway_behaviour.png)
+
+# Notes
+
+- [istio traffic management concepts](https://istio.io/latest/docs/concepts/traffic-management/#destination-rules) - explains destination rules and virtual services
+
+
+**Attribution**[^1][^2]
+
+[^1]: Istio icons provided by [Istio Media Resources](https://istio.io/latest/about/media-resources/)
+[^2]: Jupyterlab icon from [wikimedia-commons](https://commons.wikimedia.org/wiki/File:Jupyter_logo.svg)

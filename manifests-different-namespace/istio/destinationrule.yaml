@@ -1,9 +1,0 @@
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
-metadata:
-  name: egressgateway-for-cnn-debug
-  namespace: aaw-fc
-spec:
-  host: cnn-egress-gateway-debug.aaw-fc.svc.cluster.local
-  subsets:
-  - name: cnn-debug

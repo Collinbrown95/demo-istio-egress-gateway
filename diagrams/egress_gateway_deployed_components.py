@@ -41,7 +41,6 @@ with Diagram(myself(), show=False):
             allow_ingress_from_collin_brown = NetworkPolicy("allow-ingress-from-collin-brown")
             # istio
             cnn_gateway = Custom("cnn-gateway", icon_path="icons/istio.png")
-            cnn_service_entry = Custom("cnn-service-entry", icon_path="icons/istio.png")
         with Cluster("collin-brown"):
             collin_brown_ns = NS("collin-brown")
             jupyter_notebook = Custom("test-employee-notebook", icon_path="icons/jupyter.png")
@@ -50,6 +49,7 @@ with Diagram(myself(), show=False):
             # istio
             cnn_virtual_service = Custom("cnn-virtual-service", icon_path="icons/istio.png")
             cnn_destination_rule = Custom("cnn-destination-rule", icon_path="icons/istio.png")
+            cnn_service_entry = Custom("cnn-service-entry", icon_path="icons/istio.png")
 
         # Istio Operator Controller watches a set of namespaces for deployments of IstioOperator resources
         istio_operator_controller >> Edge(style="dashed", color="black", label="watches") >> istio_system_ns

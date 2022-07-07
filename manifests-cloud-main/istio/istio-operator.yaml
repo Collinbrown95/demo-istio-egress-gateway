@@ -7,7 +7,6 @@ spec:
   # Need to explicitly enable logging to stdout
   meshConfig:
     accessLogFile: /dev/stdout
-  profile: minimal
   components:
     egressGateways:
     - name: cnn-egress-gateway-debug

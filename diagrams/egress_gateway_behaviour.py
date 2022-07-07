@@ -40,7 +40,6 @@ with Diagram(myself(), show=False):
             # network policy
             allow_ingress_from_collin_brown = NetworkPolicy("allow-ingress-from-collin-brown")
             # istio
-            allow_all_ap_cms = Custom("allow-all (authorization policy)", icon_path="icons/istio.png")
             cnn_gateway = Custom("cnn-gateway", icon_path="icons/istio.png")
             cnn_service_entry = Custom("cnn-service-entry", icon_path="icons/istio.png")
         with Cluster("collin-brown"):
@@ -49,7 +48,6 @@ with Diagram(myself(), show=False):
             # network policy
             allow_egress_to_cloud_main = NetworkPolicy("allow-egress-to-cloud-main")
             # istio
-            allow_all_ap_cb = Custom("allow-all (authorization policy)", icon_path="icons/istio.png")
             cnn_virtual_service = Custom("cnn-virtual-service", icon_path="icons/istio.png")
             cnn_destination_rule = Custom("cnn-destination-rule", icon_path="icons/istio.png")
 

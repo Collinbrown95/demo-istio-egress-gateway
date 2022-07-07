@@ -41,7 +41,6 @@ with Diagram(myself(), show=False):
             allow_ingress_from_collin_brown = NetworkPolicy("allow-ingress-from-collin-brown")
             # istio
             allow_all_ap_cms = Custom("allow-all (authorization policy)", icon_path="icons/istio.png")
-            cnn_destination_rule = Custom("cnn-destination-rule", icon_path="icons/istio.png")
             cnn_gateway = Custom("cnn-gateway", icon_path="icons/istio.png")
             cnn_service_entry = Custom("cnn-service-entry", icon_path="icons/istio.png")
         with Cluster("collin-brown"):
@@ -52,6 +51,7 @@ with Diagram(myself(), show=False):
             # istio
             allow_all_ap_cb = Custom("allow-all (authorization policy)", icon_path="icons/istio.png")
             cnn_virtual_service = Custom("cnn-virtual-service", icon_path="icons/istio.png")
+            cnn_destination_rule = Custom("cnn-destination-rule", icon_path="icons/istio.png")
 
         # Istio Operator Controller watches a set of namespaces for deployments of IstioOperator resources
         istio_operator_controller >> Edge(style="dashed", color="black", label="watches") >> istio_system_ns

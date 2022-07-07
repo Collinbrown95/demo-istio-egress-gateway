@@ -28,12 +28,12 @@ with Diagram(myself(), show=False):
         with Cluster("istio-system"):
             istio_system_ns = NS("istio-system")
             istio_daemon = Deployment("istiod")
-            istio_operator = CRD("cnn-egress-gateway-debug")
         with Cluster("cloud-main-system"):
             cloud_main_system_ns = NS("cloud-main-system")
             cnn_egress_gateway_debug = Deployment("cnn-egress-gateway-debug")
             cnn_egress_gateway_debug_sa = ServiceAccount("cnn-egress-gateway-debug-sa")
             cnn_egress_gateway_debug_sa_token = Secret("cnn-egress-gateway-debug-sa-token")
+            istio_operator = CRD("cnn-egress-gateway-debug")
             # rbac
             allow_get_secrets_role = Role("allow-get-secrets")
             allow_get_secrets_rb = RoleBinding("allow-get-secrets")

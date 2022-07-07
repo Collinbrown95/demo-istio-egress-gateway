@@ -1,7 +1,7 @@
 apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
 metadata:
-  namespace: istio-system
+  namespace: cloud-main-system
   name: cnn-egress-gateway-debug
 spec:
   # Need to explicitly enable logging to stdout

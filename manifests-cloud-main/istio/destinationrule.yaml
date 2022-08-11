@@ -1,0 +1,12 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: egressgateway-for-cnn-debug
+  namespace: collin-brown
+spec:
+  host: cnn-egress-gateway-debug.cloud-main-system.svc.cluster.local
+  subsets:
+  - name: cnn
+  exportTo:
+    - collin-brown
+    - cloud-main-system

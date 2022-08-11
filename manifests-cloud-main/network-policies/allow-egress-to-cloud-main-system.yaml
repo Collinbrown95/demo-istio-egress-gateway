@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-employee-egress-to-cloud-main-system-debug
+  namespace: collin-brown
+spec:
+  egress:
+  - ports:
+    - port: 8443
+      protocol: TCP
+    - port: 8080
+      protocol: TCP
+    - port: 443
+      protocol: TCP
+    - port: 80
+      protocol: TCP
+    - port: 22
+      protocol: TCP
+    to:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: cloud-main-system
+  podSelector: {}
+  policyTypes:
+  - Egress
